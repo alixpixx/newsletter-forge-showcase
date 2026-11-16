@@ -1,0 +1,19 @@
+{
+  "name": "newsletter-forge",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "dev": "cd apps/admin && bun run dev",
+    "build": "cd apps/admin && bun run build",
+    "admin": "cd apps/admin && bun run dev"
+  },
+  "packageManager": "bun@1.2.0",
+  "devDependencies": {
+    "@types/bun": "^1.4.2"
+  }
+}

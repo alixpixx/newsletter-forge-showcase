@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext"],
+    "types": ["bun"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false,
+    "paths": {
+      "@nf/ai": ["../../packages/ai/src/index.ts"],
+      "@nf/ai/*": ["../../packages/ai/src/*"],
+      "@nf/automations": ["../../packages/automations/src/index.ts"],
+      "@nf/config": ["../../packages/config/src/index.ts"],
+      "@nf/email": ["../../packages/email/src/index.ts"],
+      "@nf/segments": ["../../packages/segments/src/index.ts"],
+      "@nf/segments/*": ["../../packages/segments/src/*"],
+      "@nf/tokens": ["../../packages/tokens/src/index.ts"],
+      "@nf/render/hydrate": ["../../packages/render/src/hydrate/index.ts"],
+      "@nf/render/articles": ["../../packages/render/src/articles.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

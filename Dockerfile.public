@@ -1,0 +1,21 @@
+FROM oven/bun:1 AS build
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_PUBLIC_BASE_URL
+ENV NEXT_PUBLIC_PUBLIC_BASE_URL=$NEXT_PUBLIC_PUBLIC_BASE_URL
+COPY . .
+RUN bun install --frozen-lockfile
+RUN cd apps/public && bun run build
+
+FROM node:22-slim AS run
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+COPY --from=build /app/apps/public/.next/standalone ./
+COPY --from=build /app/apps/public/.next/static ./apps/public/.next/static
+# `output: standalone` n'embarque pas `public/` : sans cette ligne, /w.js (le script du widget) répond 404.
+COPY --from=build /app/apps/public/public ./apps/public/public
+EXPOSE 3000
+CMD ["node", "apps/public/server.js"]

@@ -1,0 +1,13 @@
+{
+  "name": "@nf/email",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./footer": "./src/footer.ts",
+    "./templates": "./src/templates.ts",
+    "./dates": "./src/dates.ts",
+    "./i18n": "./src/i18n.ts"
+  }
+}

@@ -1,0 +1,45 @@
+# CE QUI NE DOIT PAS ENTRER DANS LES IMAGES (admin, public, worker).
+#
+# ⛔ POURQUOI CE FICHIER EXISTE. Les Dockerfile font `COPY . .`, et bun charge
+# AUTOMATIQUEMENT `.env`, `.env.production` (NODE_ENV=production y est posé) et
+# `.env.local` au démarrage du processus. Sans cette liste, un `docker build`
+# lancé depuis un poste de travail cuit ces fichiers dans une couche d'image :
+#   1. le secret qu'ils portent voyage avec l'image, lisible par quiconque la tire ;
+#   2. pire pour l'exploitation, le mode EFFECTIF du worker ne vient plus de
+#      l'environnement de la plateforme mais d'un fichier figé à la construction —
+#      `WORKER_MODE`, `WORKER_SENDING_MODE`, `SUPABASE_*` compris.
+#
+# ⚠️ Une image construite en CI après un checkout ne contient que le versionné, et
+# aucun `.env` ne l'est (voir `.gitignore`). Cette liste est donc une défense en
+# profondeur pour les builds lancés à la main depuis un poste.
+#
+# ⛔ NE JAMAIS AJOUTER ICI : `package.json`, `bun.lock`, `apps/`, `packages/`.
+# `RUN bun install --frozen-lockfile` échouerait sans le verrou, et le worker
+# s'exécute directement depuis les sources.
+
+# Réinstallé juste après la copie par `bun install` : le copier est une pure perte.
+node_modules
+**/node_modules
+
+# Artefacts de build des applications web — inutiles dans le contexte.
+.next
+**/.next
+.vercel
+**/.vercel
+
+# ⛔ Les secrets et tout ce que bun chargerait tout seul.
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Historique et outillage de dépôt.
+.git
+.gitignore
+.github
+
+# Migrations et notes : rien de tout cela n'est lu à l'exécution.
+docs
+tasks
+supabase
+design-theme

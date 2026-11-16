@@ -1,0 +1,9 @@
+FROM oven/bun:1
+WORKDIR /app
+ENV NODE_ENV=production
+# Le worker s'execute sous bun directement, sans etape de build : il draine la
+# file puis sort (RUN_ONCE), il est appele par l'ordonnanceur de la plateforme.
+COPY . .
+RUN bun install --frozen-lockfile
+WORKDIR /app/apps/worker
+CMD ["bun", "run", "src/index.ts"]

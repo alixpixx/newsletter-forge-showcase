@@ -1,0 +1,17 @@
+{
+  "name": "@nf/ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./claude": "./src/claude.ts",
+    "./newsletter-intro": "./src/newsletter-intro.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

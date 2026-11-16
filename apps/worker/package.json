@@ -1,0 +1,28 @@
+{
+  "name": "@nf/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun run src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nf/ai": "workspace:*",
+    "@nf/analytics": "workspace:*",
+    "@nf/config": "workspace:*",
+    "@nf/edition": "workspace:*",
+    "@nf/email": "workspace:*",
+    "@nf/render": "workspace:*",
+    "@nf/segments": "workspace:*",
+    "@nf/tokens": "workspace:*",
+    "@nf/wp": "workspace:*",
+    "@supabase/supabase-js": "^2.110.5",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  }
+}
