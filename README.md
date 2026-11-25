@@ -8,6 +8,20 @@ several brands, each with its own sending domain, legal footer, consent texts an
 > `example.com`, "Example Media Ltd"); deployment configuration and internal design notes are not
 > included. Code comments and commit-level rationale are written in French.
 
+## Live demo
+
+A public demo runs on fictitious data:
+
+| | |
+|---|---|
+| Back office | https://newsletter-forge-demo.178-156-233-96.sslip.io |
+| Sign in | `demo@example.com` / `Showcase-Demo-2026` |
+| Public pages (signup widget, preferences, unsubscribe) | https://newsletter-forge-public-demo.178-156-233-96.sslip.io |
+
+The demo is safe to click around: no email is ever sent (the sending worker does not run), image
+uploads are disabled, and the account password and user management are locked. Other changes are
+allowed and the data may be reset at any time.
+
 ## What it does
 
 - **Email builder** — drag-and-drop rows and blocks, saved rows, brand partials (header/footer),
